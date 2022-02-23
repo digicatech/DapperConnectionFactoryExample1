@@ -55,3 +55,12 @@ if (result != null)
     var strResult = JsonConvert.SerializeObject(result);
     Console.WriteLine(strResult);
 }
+
+
+var result2 = dapperBaseRepository.Query<User>("select *from payment.users");
+
+if (result2 != null)
+{
+    var strResult2 = JsonConvert.SerializeObject(result2);
+    Console.WriteLine(strResult2);
+}

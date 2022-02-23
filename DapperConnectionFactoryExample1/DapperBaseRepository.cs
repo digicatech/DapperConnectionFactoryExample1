@@ -23,7 +23,7 @@ namespace DapperConnectionFactoryExample1
         {
             try
             {
-                using (var connection = new ConnectionFactory(this.ConenctionString).GetConnection(this.dataAccessProviderTypes))
+                using (var connection = new ConnectionFactory(this.ConenctionString).CreateConnection(this.dataAccessProviderTypes))
                 {
                     connection.Open();
                     var result = connection.Query<T>(sql, parameters);
@@ -46,7 +46,7 @@ namespace DapperConnectionFactoryExample1
             int result = 0;
             try
             {
-                using (var connection = new ConnectionFactory(this.ConenctionString).GetConnection(this.dataAccessProviderTypes))
+                using (var connection = new ConnectionFactory(this.ConenctionString).CreateConnection(this.dataAccessProviderTypes))
                 {
                     connection.Open();
                     result = connection.Execute(sqlStr, parameters);

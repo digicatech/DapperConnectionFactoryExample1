@@ -39,41 +39,45 @@ namespace DapperConnectionFactoryExample1
 
 
 
-        public IDbConnection GetConnection(DataAccessProviderTypes dataAccessProviderTypes)
+        public IDbConnection CreateConnection(DataAccessProviderTypes dataAccessProviderTypes)
         {
             try
             {
-                if (_connection != null)
+                if (Connection != null)
                 {
-                    _connection.Close();
-                    _connection.Dispose();
+                    Connection.Close();
+                    Connection.Dispose();
                 }
             }
             catch (Exception)
             {
-                _connection = null;
+                Connection = null;
             }
 
 
             if (dataAccessProviderTypes == DataAccessProviderTypes.Oracle)
             {
-                return new OracleConnection(_connectionString);
+                Connection =  new OracleConnection(_connectionString);
             }
             else if (dataAccessProviderTypes == DataAccessProviderTypes.PostgreSql)
             {
-                return new NpgsqlConnection(_connectionString);
+                Connection =  new NpgsqlConnection(_connectionString);
             }
             else if (dataAccessProviderTypes == DataAccessProviderTypes.SqlServer)
             {
-                return new SqlConnection(_connectionString);
+                Connection =  new SqlConnection(_connectionString);
             }
             else if (dataAccessProviderTypes == DataAccessProviderTypes.SqLite)
             {
-                return new SqliteConnection(_connectionString);
+                Connection =  new SqliteConnection(_connectionString);
+            }
+            else
+            {
+                throw new Exception("Unsupporte database provider");
             }
 
-
-            return default;
+            
+            return Connection;
         }
 
 

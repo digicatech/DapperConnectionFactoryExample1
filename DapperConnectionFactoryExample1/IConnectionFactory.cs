@@ -4,6 +4,6 @@ namespace DapperConnectionFactoryExample1
 {
     public interface IConnectionFactory : IDisposable
     {
-        IDbConnection Connection { get; }
+        IDbConnection CreateConnection(DataAccessProviderTypes dataAccessProviderTypes);
     }
 }
